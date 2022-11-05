@@ -81,14 +81,35 @@ public:
   //EFFECTS:  removes the item at the front of the list
   void pop_front();
 
+  void pop_front(){
+  assert(!empty());
+  Node *temp = first;
+  first = first->next;
+  delete temp;
+  }
+
   //REQUIRES: list is not empty
   //MODIFIES: may invalidate list iterators
   //EFFECTS:  removes the item at the back of the list
   void pop_back();
 
+  void pop_back(){
+  assert(!empty());
+  Node *temp = last;
+  first = last->next;
+  delete temp;
+  }
+
   //MODIFIES: may invalidate list iterators
   //EFFECTS:  removes all items from the list
   void clear();
+
+  void clear(){
+    int size = size();
+    for(int i = 0; i < size; ++i){
+      pop_front();
+    }
+  }
 
   // You should add in a default constructor, destructor, copy constructor,
   // and overloaded assignment operator, if appropriate. If these operations
