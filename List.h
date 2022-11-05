@@ -20,14 +20,31 @@ public:
   //EFFECTS:  returns true if the list is empty
   bool empty() const;
 
+  bool empty() const{
+    return (first == nullptr || last == nullptr); //idk if i need to check both
+  }
+
   //EFFECTS: returns the number of elements in this List
   //HINT:    Traversing a list is really slow.  Instead, keep track of the size
   //         with a private member variable.  That's how std::list does it.
   int size() const;
 
+  int size() const{
+    int counter = 0;
+    for(Node *np = first; np; np = np->next){
+      counter++;
+    }
+    return counter;
+  }
+
   //REQUIRES: list is not empty
   //EFFECTS: Returns the first element in the list by reference
   T & front();
+
+  T & front(){
+  assert(!empty());
+  return first->datum;
+  }
 
   //REQUIRES: list is not empty
   //EFFECTS: Returns the last element in the list by reference
