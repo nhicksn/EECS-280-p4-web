@@ -50,11 +50,31 @@ public:
   //EFFECTS: Returns the last element in the list by reference
   T & back();
 
+  T & back(){
+  assert(!empty());
+  return last->datum;
+  }
+
   //EFFECTS:  inserts datum into the front of the list
   void push_front(const T &datum);
 
+  void push_front(const T &datum){
+  Node *p = new Node;
+  p->datum = datum;
+  p->next = first;
+  first = p;
+  }
+
   //EFFECTS:  inserts datum into the back of the list
   void push_back(const T &datum);
+
+  void push_back(const T &datum){
+  Node *p = new Node;
+  p->datum = datum;
+  p->next = last;
+  last = p;
+
+  }
 
   //REQUIRES: list is not empty
   //MODIFIES: may invalidate list iterators
