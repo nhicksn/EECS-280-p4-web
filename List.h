@@ -122,6 +122,8 @@ public:
     // and overloaded assignment operator, if appropriate. If these operations
     // will work correctly without defining these, you can omit them. A user
     // of the class must be able to create, copy, assign, and destroy Iterators.
+    
+    // we do not need the big three
 
     // Your iterator should implement the following public operators: *,
     // ++ (prefix), default constructor, == and !=.
@@ -133,6 +135,11 @@ public:
       assert(node_ptr);
       node_ptr = node_ptr->prev;
       return *this;
+    }
+
+    Iterator& operator*() {
+      assert(node_ptr);
+      
     }
 
   private:
