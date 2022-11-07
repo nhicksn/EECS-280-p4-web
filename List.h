@@ -18,29 +18,19 @@ class List {
 public:
 
   //EFFECTS:  returns true if the list is empty
-  bool empty() const;
-
   bool empty() const{
-    return (first == nullptr || last == nullptr); //idk if i need to check both
+    return (first == nullptr); //idk if i need to check both
   }
 
   //EFFECTS: returns the number of elements in this List
   //HINT:    Traversing a list is really slow.  Instead, keep track of the size
   //         with a private member variable.  That's how std::list does it.
-  int size() const;
-
   int size() const{
-    int counter = 0;
-    for(Node *np = first; np; np = np->next){
-      counter++;
-    }
-    return counter;
+    return size;
   }
 
   //REQUIRES: list is not empty
   //EFFECTS: Returns the first element in the list by reference
-  T & front();
-
   T & front(){
   assert(!empty());
   return first->datum;
@@ -48,62 +38,53 @@ public:
 
   //REQUIRES: list is not empty
   //EFFECTS: Returns the last element in the list by reference
-  T & back();
-
   T & back(){
   assert(!empty());
   return last->datum;
   }
 
   //EFFECTS:  inserts datum into the front of the list
-  void push_front(const T &datum);
-
   void push_front(const T &datum){
   Node *p = new Node;
   p->datum = datum;
   p->next = first;
   first = p;
+  size++;
   }
 
   //EFFECTS:  inserts datum into the back of the list
-  void push_back(const T &datum);
-
   void push_back(const T &datum){
   Node *p = new Node;
   p->datum = datum;
   p->next = last;
   last = p;
-
+  size++;
   }
 
   //REQUIRES: list is not empty
   //MODIFIES: may invalidate list iterators
   //EFFECTS:  removes the item at the front of the list
-  void pop_front();
-
   void pop_front(){
   assert(!empty());
   Node *temp = first;
   first = first->next;
+  size--;
   delete temp;
   }
 
   //REQUIRES: list is not empty
   //MODIFIES: may invalidate list iterators
   //EFFECTS:  removes the item at the back of the list
-  void pop_back();
-
   void pop_back(){
   assert(!empty());
   Node *temp = last;
   first = last->next;
+  size--;
   delete temp;
   }
 
   //MODIFIES: may invalidate list iterators
   //EFFECTS:  removes all items from the list
-  void clear();
-
   void clear(){
     int size = size();
     for(int i = 0; i < size; ++i){
@@ -115,12 +96,13 @@ public:
   // and overloaded assignment operator, if appropriate. If these operations
   // will work correctly without defining these, you can omit them. A user
   // of the class must be able to create, copy, assign, and destroy Lists
-
+  
 private:
   //a private type
   struct Node {
     Node *next;
     Node *prev;
+    int size;
     T datum;
   };
 
@@ -158,6 +140,7 @@ public:
     // add any additional necessary member variables here
 
     // add any friend declarations here
+    friend class List;
 
     // construct an Iterator at a specific position
     Iterator(Node *p);
