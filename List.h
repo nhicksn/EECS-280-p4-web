@@ -164,7 +164,7 @@ public:
 
     Iterator& operator*() {
       assert(node_ptr);
-      
+      return node_ptr->datum;
     }
 
   private:
@@ -186,7 +186,9 @@ public:
   }
 
   // return an Iterator pointing to "past the end"
-  Iterator end() const;
+  Iterator end() const{
+    return Iterator(end); //"past" bc not inclusive
+  }
 
   //REQUIRES: i is a valid, dereferenceable iterator associated with this list
   //MODIFIES: may invalidate other list iterators
