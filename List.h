@@ -49,7 +49,7 @@ public:
   p->datum = datum;
   p->next = first;
   first = p;
-  size++;
+  size()++;
   }
 
   //EFFECTS:  inserts datum into the back of the list
@@ -58,7 +58,7 @@ public:
   p->datum = datum;
   p->next = last;
   last = p;
-  size++;
+  size()++;
   }
 
   //REQUIRES: list is not empty
@@ -68,7 +68,7 @@ public:
   assert(!empty());
   Node *temp = first;
   first = first->next;
-  size--;
+  size()--;
   delete temp;
   }
 
@@ -79,15 +79,14 @@ public:
   assert(!empty());
   Node *temp = last;
   first = last->next;
-  size--;
+  size()--;
   delete temp;
   }
 
   //MODIFIES: may invalidate list iterators
   //EFFECTS:  removes all items from the list
   void clear(){
-    int size = size();
-    for(int i = 0; i < size; ++i){
+    for(int i = 0; i < size(); ++i){
       pop_front();
     }
   }
