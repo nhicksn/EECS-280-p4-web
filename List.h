@@ -187,7 +187,7 @@ public:
 
   // return an Iterator pointing to "past the end"
   Iterator end() const{
-    return Iterator(end); //"past" bc not inclusive
+    return Iterator(); 
   }
 
   //REQUIRES: i is a valid, dereferenceable iterator associated with this list
