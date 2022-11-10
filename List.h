@@ -127,6 +127,26 @@ public:
     // Your iterator should implement the following public operators: *,
     // ++ (prefix), default constructor, == and !=.
 
+    T & operator*() const{
+      assert(node_ptr);
+      return node_ptr->datum;
+    }
+
+    Iterator & operator++(){
+      assert(node_ptr);
+      node_ptr = node_ptr->next;
+      return *this;
+    }
+
+    bool operator==(Iterator rhs) const{
+      return node_ptr == rhs.node_ptr;
+    }
+
+    bool operator!=(Iterator rhs) const{
+      return node_ptr != rhs.node_ptr;
+    }
+
+
   public:
     // This operator will be used to test your code. Do not modify it.
     // Requires that the current element is dereferenceable.
