@@ -127,11 +127,17 @@ public:
     // Your iterator should implement the following public operators: *,
     // ++ (prefix), default constructor, == and !=.
 
+    //default constructor
+    Iterator(Node *np)
+      : node_ptr(np) { }
+
+    // dereference operator 
     T & operator*() const{
       assert(node_ptr);
       return node_ptr->datum;
     }
 
+    //prefix ++ operator
     Iterator & operator++(){
       assert(node_ptr);
       node_ptr = node_ptr->next;
