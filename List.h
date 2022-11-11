@@ -19,7 +19,7 @@ public:
 
   //EFFECTS:  returns true if the list is empty
   bool empty() const{
-    return (first == nullptr); //idk if i need to check both
+    return (first == nullptr);
   }
 
   //EFFECTS: returns the number of elements in this List
@@ -49,7 +49,11 @@ public:
     p->datum = datum;
     p->next = first;
     p->prev = nullptr;
-    first = p;
+    if(empty()) { first = last = p; }
+    else {
+      first->prev = p;
+      first = p;
+    }
     ListSize++;
   }
 
@@ -74,6 +78,10 @@ public:
     assert(!empty());
     Node *temp = first;
     first = first->next;
+    first->prev = nullptr;
+    if(size() == 1) {
+      last = nullptr;
+    }
     ListSize--;
     delete temp;
   }
@@ -85,6 +93,10 @@ public:
     assert(!empty());
     Node *temp = last;
     last = last->prev;
+    last->next = nullptr;
+    if(size() == 1) {
+      first = nullptr;
+    }
     ListSize--;
     delete temp;
   }
