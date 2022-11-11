@@ -168,11 +168,6 @@ public:
       return *this;
     }
 
-    Iterator& operator*() {
-      assert(node_ptr);
-      return node_ptr->datum;
-    }
-
         //default constructor
     Iterator()
       : node_ptr(nullptr) { }
@@ -248,7 +243,7 @@ public:
    if(empty()){
     push_front(datum);
    }
-   else if(i == being()){
+   else if(i == begin()){
     push_front(datum);
    }
    else if(i == end()){
