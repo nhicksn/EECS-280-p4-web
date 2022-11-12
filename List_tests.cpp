@@ -23,6 +23,8 @@ TEST(test_size) {
     assert(List.size() == 2);
     List.pop_back();
     assert(List.size() == 1);
+    List.pop_back();
+    assert(List.size() == 0);
 }
 
 TEST(test_front) {
@@ -95,6 +97,12 @@ TEST(test_copy_constructor) {
     List<int> ListCopy(List1);
     assert(ListCopy.front() == 6);
     assert(ListCopy.back() == 5);
+}
+
+TEST(test_copy_constructor_empty) {
+    List<int> List1;
+    List<int> ListCopy(List1);
+    assert(ListCopy.empty());
 }
 
 TEST(test_equals_constructor) {
@@ -179,5 +187,6 @@ TEST(test_insert_between_two) {
     List1.pop_front();
     assert(List1.front() == 6);
 }
+
 
 TEST_MAIN()
