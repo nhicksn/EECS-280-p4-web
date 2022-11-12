@@ -201,5 +201,59 @@ TEST(test_insert_between_two) {
     assert(List1.front() == 6);
 }
 
+TEST(test_erase_middle) {
+    List<int> List1;
+    List1.push_back(5);
+    List1.push_front(4);
+    List1.push_front(3);
+    List<int>::Iterator iter = List1.begin();
+    ++iter;
+    List1.erase(iter);
+    iter = List1.begin();
+    assert(*iter == 3);
+    ++iter;
+    assert(*iter == 5);
+}
+
+TEST(test_pop_front_twice) {
+    List<int> List;
+    List.push_back(4);
+    List.push_back(5);
+    assert(List.size() == 2);
+    List.pop_front();
+    assert(List.size() == 1);
+    List.pop_front();
+    assert(List.size() == 0 && List.empty());
+}
+
+TEST(test_insert_empty) {
+    List<int> List1;
+    List<int>::Iterator iter = List1.begin();
+    List1.insert(iter, 2);
+    assert(List1.size() == 1);
+    iter = List1.begin();
+    assert(*iter == 2);
+}
+
+TEST(test_insert_front) {
+    List<int> List1;
+    List1.push_back(5);
+    List1.push_front(4);
+    List<int>::Iterator iter = List1.begin();
+    List1.insert(iter, 3);
+    assert(List1.size() == 3);
+    iter = List1.begin();
+    assert(*iter == 3);
+}
+
+TEST(test_insert_back) {
+    List<int> List1;
+    List1.push_front(3);
+    List<int>::Iterator iter = List1.end();
+    List1.insert(iter, 4);
+    iter = List1.begin();
+    ++iter;
+    assert(*iter == 4);
+}
 
 TEST_MAIN()

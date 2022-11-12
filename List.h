@@ -255,16 +255,19 @@ public:
   //REQUIRES: i is a valid iterator associated with this list
   //EFFECTS: inserts datum before the element at the specified position.
   void insert(Iterator i, const T &datum) {
-   if(empty()){
+   if(empty()) {
     push_front(datum);
+    return;
    }
-   else if(i == begin()){
+   else if(i == begin()) {
     push_front(datum);
+    return;
    }
-   else if(i == end()){
+   else if(i == end()) {
     push_back(datum);
+    return;
    }
-   else{
+   else {
     Node *newP = new Node;
     newP->datum = datum;
     newP->next = i.node_ptr;
