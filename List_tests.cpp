@@ -113,4 +113,71 @@ TEST(test_equals_constructor) {
     assert(ListCopy.back() == 5);
 }
 
+TEST(test_begin) {
+    List<int> List;
+    List.push_back(5);
+    List.push_front(4);
+    assert(*List.begin() == 4);
+}
+
+TEST(test_begin_and_plus_and_minus) {
+    List<int> List1;
+    List1.push_back(5);
+    List1.push_front(4);
+    List<int>::Iterator iter = List1.begin();
+    assert(*iter == 4);
+    ++iter;
+    assert(*iter == 5);
+    --iter;
+    assert(*iter == 4);
+}
+
+TEST(test_erase) {
+    List<int> List1;
+    List1.push_back(5);
+    List1.push_front(4);
+    List1.push_front(3);
+    List<int>::Iterator iter = List1.begin();
+    ++iter;
+    cout << "test 1" << endl;
+    List1.erase(iter);
+    cout << "test 2" << endl;
+    assert(List1.front() == 3);
+    assert(List1.back() == 5);
+    iter = List1.begin();
+    List1.erase(iter);
+    assert(List1.front() == 5);
+}
+
+TEST(test_erase_one_element) {
+    List<int> List1;
+    List1.push_back(5);
+    List<int>::Iterator iter = List1.begin();
+    List1.erase(iter);
+    assert(List1.empty());
+}
+
+TEST(test_erase_two_elements) {
+    List<int> List1;
+    List1.push_back(5);
+    List1.push_front(4);
+    List<int>::Iterator iter = List1.begin();
+    ++iter;
+    List1.erase(iter);
+    assert(List1.back() == 4);
+    assert(List1.front() == 4);
+}
+
+TEST(test_insert_between_two) {
+    List<int> List1;
+    List1.push_back(5);
+    List1.push_front(4);
+    List<int>::Iterator iter = List1.begin();
+    ++iter;
+    List1.insert(iter, 6);
+    assert(List1.front() == 4);
+    List1.pop_front();
+    assert(List1.front() == 6);
+}
+
 TEST_MAIN()

@@ -240,12 +240,11 @@ public:
   //EFFECTS: Removes a single element from the list container
   void erase(Iterator i) {
     Node *temp = i.node_ptr;
-    if(i == first) { pop_front(); }
-    else if(i == last) { pop_back(); }
+    if(i == first) { pop_front(); return; }
+    else if(i == last) { pop_back(); return; }
     else {
       --i;
       i.node_ptr->next = temp->next;
-      ++i;
       ++i;
       i.node_ptr->prev = temp->prev;
       delete temp;
