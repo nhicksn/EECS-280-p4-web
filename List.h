@@ -78,9 +78,11 @@ public:
     assert(!empty());
     Node *temp = first;
     first = first->next;
-    first->prev = nullptr;
-    if(size() == 1) {
+    if(ListSize == 1) {
       last = nullptr;
+    }
+    else {
+          first->prev = nullptr;
     }
     ListSize--;
     delete temp;
@@ -93,9 +95,11 @@ public:
     assert(!empty());
     Node *temp = last;
     last = last->prev;
-    last->next = nullptr;
-    if(size() == 1) {
+    if(ListSize == 1) {
       first = nullptr;
+    }
+    else {
+      last->next = nullptr;
     }
     ListSize--;
     delete temp;
