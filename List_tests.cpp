@@ -128,6 +128,18 @@ TEST(test_begin) {
     assert(*List.begin() == 4);
 }
 
+TEST(test_begin_equals_end){
+    List<int> List;
+    assert(List.begin() == List.end());
+}
+
+TEST(test_being_not_equal_end){
+    List<int> List;
+    List.push_back(5);
+    List.push_front(4);
+    assert(List.begin() != List.end());
+}
+
 TEST(test_begin_and_plus_and_minus) {
     List<int> List1;
     List1.push_back(5);
